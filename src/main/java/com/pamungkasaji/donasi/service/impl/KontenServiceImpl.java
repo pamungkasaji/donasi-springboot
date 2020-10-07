@@ -18,27 +18,22 @@ public class KontenServiceImpl implements KontenService {
     }
 
     @Override
-    public List<Konten> findAll() {
+    public List<Konten> findAllKonten() {
         return kontenRepository.findAll();
     }
 
     @Override
-    public Konten findById(Long aLong) {
+    public Konten findKontenById(Long aLong) {
         return kontenRepository.findById(aLong).orElse(null);
     }
 
     @Override
-    public Konten save(Konten object) {
+    public Konten saveKonten(Konten object) {
         return kontenRepository.save(object);
     }
 
     @Override
-    public void delete(Konten object) {
-        kontenRepository.delete(object);
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
+    public void deleteKonten(Long aLong) {
         kontenRepository.deleteById(aLong);
     }
 }

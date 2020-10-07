@@ -18,27 +18,22 @@ public class PerkembanganServiceImpl implements PerkembanganService {
     }
 
     @Override
-    public List<Perkembangan> findAll() {
+    public List<Perkembangan> findAllPerkembangan() {
         return perkembanganRepository.findAll();
     }
 
     @Override
-    public Perkembangan findById(Long aLong) {
+    public Perkembangan findPerkembanganById(Long aLong) {
         return perkembanganRepository.findById(aLong).orElse(null);
     }
 
     @Override
-    public Perkembangan save(Perkembangan object) {
+    public Perkembangan savePerkembangan(Perkembangan object) {
         return perkembanganRepository.save(object);
     }
 
     @Override
-    public void delete(Perkembangan object) {
-        perkembanganRepository.save(object);
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
+    public void deletePerkembangan(Long aLong) {
         perkembanganRepository.deleteById(aLong);
     }
 }

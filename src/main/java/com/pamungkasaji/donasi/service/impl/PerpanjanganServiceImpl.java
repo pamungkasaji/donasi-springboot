@@ -18,27 +18,22 @@ public class PerpanjanganServiceImpl implements PerpanjanganService {
     }
 
     @Override
-    public List<Perpanjangan> findAll() {
+    public List<Perpanjangan> findAllPerpanjangan() {
         return perpanjanganRepository.findAll();
     }
 
     @Override
-    public Perpanjangan findById(Long aLong) {
+    public Perpanjangan findPerpanjanganById(Long aLong) {
         return perpanjanganRepository.findById(aLong).orElse(null);
     }
 
     @Override
-    public Perpanjangan save(Perpanjangan object) {
+    public Perpanjangan savePerpanjangan(Perpanjangan object) {
         return perpanjanganRepository.save(object);
     }
 
     @Override
-    public void delete(Perpanjangan object) {
-        perpanjanganRepository.delete(object);
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
+    public void deletePerpanjangan(Long aLong) {
         perpanjanganRepository.deleteById(aLong);
     }
 }

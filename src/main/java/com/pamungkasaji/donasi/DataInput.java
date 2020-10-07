@@ -5,11 +5,17 @@ import com.pamungkasaji.donasi.entity.Konten;
 import com.pamungkasaji.donasi.entity.Perkembangan;
 import com.pamungkasaji.donasi.entity.User;
 import com.pamungkasaji.donasi.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class DataInput implements CommandLineRunner {
+
+    private final Logger LOG = LoggerFactory.getLogger(DonasiApplication.class);
 
     private final DonaturService donaturService;
     private final KontenService kontenService;
@@ -29,25 +35,29 @@ public class DataInput implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        //Register User
-        User userAji= new User("usernameAji","passAji","Pamungkas Aji","Baturetno",
-                "123","456","asd.jpg");
-        userService.save(userAji);
+//        User user = userService.findUserById(1L);
+//		LOG.info("User : "+user);
 
-        //Create Konten
-        Konten bantuSekolah = new Konten("Bantu Sekolah", "Bantu biaya sekolah anak",
-                "awd.jpg", 5000000L, 60, "12345", "BNI");
-        bantuSekolah.setUser(userAji);
-        kontenService.save(bantuSekolah);
-
-        //Create Donatur
-        Donatur donatur1 = new Donatur("Adam", 200000L, "abc.jpg", false, "443");
-        donatur1.setKonten(bantuSekolah);
-        donaturService.save(donatur1);
-
-        //Create Perkembangan
-        Perkembangan perkembangan1 = Perkembangan.builder().judul("Bayar SPP").deskripsi("Bayar SPP Rp.400,000")
-                .konten(bantuSekolah).penggunaanDana(400000L).build();
-        perkembanganService.save(perkembangan1);
+//        //Register User
+//        User userAji= new User("usernameAji","passAji","Pamungkas Aji","Baturetno",
+//                "123","456","asd.jpg");
+//        userService.saveUser(userAji);
+//
+//        //Create Konten
+//        Konten bantuSekolah = new Konten("Bantu Sekolah", "Bantu biaya sekolah anak",
+//                "awd.jpg", 5000000L, 60, "12345", "BNI");
+//        bantuSekolah.setUser(userAji);
+//        kontenService.saveKonten(bantuSekolah);
+//
+//        //Create Donatur
+//        Donatur donatur1 = new Donatur("Adam", 200000L, "abc.jpg", false, "443");
+//        donatur1.setKonten(bantuSekolah);
+//        donaturService.saveDonatur(donatur1);
+//
+//        //Create Perkembangan
+//        Perkembangan perkembangan1 = Perkembangan.builder().judul("Bayar SPP").deskripsi("Bayar SPP Rp.400,000")
+//                .penggunaanDana(400000L).build();
+//        perkembangan1.setKonten(bantuSekolah);
+//        perkembanganService.savePerkembangan(perkembangan1);
     }
 }

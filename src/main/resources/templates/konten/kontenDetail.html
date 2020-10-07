@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'kontens')}">
+
+  <body>
+
+    <h2>konten Information</h2>
+  
+    <table class="table table-striped" th:object="${konten}">
+      <tr>
+        <th>Judul</th>
+        <td><b th:text="*{judul}"></b></td>
+      </tr>
+      <tr>
+        <th>Target</th>
+        <td th:text="*{target}" /></td>
+      </tr>
+      <tr>
+        <th>Terkumpul</th>
+        <td th:text="*{terkumpul}" /></td>
+      </tr>
+    </table>
+  
+    <a th:href="@{{id}/edit(id=${konten.id})}" class="btn btn-default">Edit
+      Owner</a>
+    <a th:href="@{{id}/pets/new(id=${konten.id})}" class="btn btn-default">Add
+      New Pet</a>
+
+    <br />
+    <br />
+    <br />
+    <h2>Pets and Visits</h2>
+
+    <table class="table table-striped">
+
+      <tr th:each="donatur : ${konten.donaturList}">
+        <td valign="top">
+          <dl class="dl-horizontal">
+            <dt>Name</dt>
+            <dd th:text="${donatur.nama}" /></dd>
+            <dt>Birth Date</dt>
+            <dd
+              th:text="${#temporals.format(donatur.createdAt, 'yyyy-MM-dd')}" /></dd>
+            <dt>Type</dt>
+            <dd th:text="${donatur.jumlah}" /></dd>
+          </dl>
+        </td>
+
+      </tr>
+
+    </table>
+  
+  </body>
+
+</html>

@@ -1,9 +1,8 @@
 package com.pamungkasaji.donasi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.pamungkasaji.donasi.Status;
-import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -13,6 +12,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "user")
 public class User {
 
@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "user")
     private List<Konten> kontenList;
 
     public User(String username, String password, String namaLengkap, String alamat, String noKtp,
@@ -58,4 +58,17 @@ public class User {
 
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", namaLengkap='" + namaLengkap + '\'' +
+                ", alamat='" + alamat + '\'' +
+                ", noKtp='" + noKtp + '\'' +
+                ", noHp='" + noHp + '\'' +
+                ", fotoKtp='" + fotoKtp + '\'' +
+                '}';
+    }
 }

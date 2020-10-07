@@ -1,7 +1,7 @@
 package com.pamungkasaji.donasi.entity;
 
-import com.pamungkasaji.donasi.Status;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@NoArgsConstructor
 @Table(name = "konten")
 public class Konten {
 
@@ -67,4 +68,16 @@ public class Konten {
 
     @CreationTimestamp
     private LocalDateTime createdAt = LocalDateTime.now();
+
+    @Override
+    public String toString() {
+        return "Konten{" +
+                "judul='" + judul + '\'' +
+                ", deskripsi='" + deskripsi + '\'' +
+                ", gambar='" + gambar + '\'' +
+                ", target=" + target +
+                ", terkumpul=" + terkumpul +
+                ", lamaDonasi=" + lamaDonasi +
+                '}';
+    }
 }

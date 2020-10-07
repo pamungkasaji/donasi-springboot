@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+  th:replace="~{fragments/layout :: layout (~{::body},'users')}">
+
+  <body>
+
+    <h2>User Information</h2>
+  
+    <table class="table table-striped" th:object="${user}">
+      <tr>
+        <th>Name</th>
+        <td><b th:text="*{username + ' ' + namaLengkap}"></b></td>
+      </tr>
+      <tr>
+        <th>Address</th>
+        <td th:text="*{alamat}" /></td>
+      </tr>
+      <tr>
+        <th>City</th>
+        <td th:text="*{noKtp}" /></td>
+      </tr>
+      <tr>
+        <th>Telephone</th>
+        <td th:text="*{noHp}" /></td>
+      </tr>
+    </table>
+  
+    <a th:href="@{{id}/edit(id=${user.id})}" class="btn btn-default">Edit
+      Owner</a>
+    <a th:href="@{{id}/pets/new(id=${user.id})}" class="btn btn-default">Add
+      New Pet</a>
+  
+    <br />
+    <br />
+    <br />
+    <h2>Pets and Visits</h2>
+  
+    <table class="table table-striped">
+  
+      <tr th:each="konten : ${user.kontenList}">
+        <td valign="top">
+          <dl class="dl-horizontal">
+            <dt>Name</dt>
+            <dd th:text="${konten.judul}" /></dd>
+            <dt>Birth Date</dt>
+            <dd
+              th:text="${#temporals.format(konten.createdAt, 'yyyy-MM-dd')}" /></dd>
+            <dt>Type</dt>
+            <dd th:text="${konten.target}" /></dd>
+          </dl>
+        </td>
+        <td valign="top">
+          <table class="table-condensed">
+            <thead>
+              <tr>
+                <th>Donatur</th>
+                <th>Jumlah</th>
+              </tr>
+            </thead>
+            <tr th:each="visit : ${konten.donaturList}">
+              <td th:text="${donatur?.nama}"></td>
+              <td th:text="${donatur?.jumlah}"></td>
+            </tr>
+            <tr>
+              <td><a
+                th:href="@{{userId}/konten/{kontenId}/edit(userId=${user.id},kontenId=${konten.id})}">Edit
+                  Pet</a></td>
+              <td><a
+                th:href="@{{userId}/konten/{kontenId}/visits/new(userId=${user.id},kontenId=${konten.id})}">Add
+                  Visit</a></td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+  
+    </table>
+  
+  </body>
+
+</html>

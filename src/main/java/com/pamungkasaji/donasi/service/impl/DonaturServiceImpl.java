@@ -18,27 +18,22 @@ public class DonaturServiceImpl implements DonaturService {
     }
 
     @Override
-    public List<Donatur> findAll() {
+    public List<Donatur> findAllDonatur() {
         return donaturRepository.findAll();
     }
 
     @Override
-    public Donatur findById(Long aLong) {
+    public Donatur findDonaturById(Long aLong) {
         return donaturRepository.findById(aLong).orElse(null);
     }
 
     @Override
-    public Donatur save(Donatur object) {
+    public Donatur saveDonatur(Donatur object) {
         return donaturRepository.save(object);
     }
 
     @Override
-    public void delete(Donatur object) {
-        donaturRepository.delete(object);
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
+    public void deleteDonatur(Long aLong) {
         donaturRepository.deleteById(aLong);
     }
 }
